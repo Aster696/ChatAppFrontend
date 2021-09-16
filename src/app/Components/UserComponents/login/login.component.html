@@ -1,0 +1,46 @@
+<app-nav-bar></app-nav-bar>
+<div class="row pt-5">
+    <div class="col-xs-1 col-sm-6 col-md-5 col-lg-4 col-xl-3 mx-auto">
+        <div class="card bg-dark text-primary border border-primary">
+            <h3 class="card-header d-flex justify-content-center border-bottom border-primary">
+                Login
+            </h3>
+            <div class="card-body">
+                <form [formGroup]="formValidation" (ngSubmit)="onSubmit()" class="form">
+                    <div class="form-group">
+                        <input formControlName="email" [class.is-invalid]="email?.invalid && email?.touched"
+                        placeholder="Your email..." type="email" class="form-control border border-primary rounded-pill"/>
+                        <div *ngIf="email?.invalid && email?.touched">
+                            <small *ngIf="email?.errors?.required" class="text-danger">
+                                (Email is required)
+                            </small>
+                            <small *ngIf="email?.errors?.email" class="text-danger">
+                                (Enter proper email)
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input formControlName="password" [class.is-invalid]="password?.invalid && password?.touched"
+                        placeholder="Your password..." type="password" class="form-control border border-primary rounded-pill"/>
+                        <div *ngIf="password?.invalid && password?.touched">
+                            <small *ngIf="password?.errors?.required" class="text-danger">
+                                (Password is required)
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <a routerLink="/forgot-password" class="card-link">forgot Password???</a>
+                    </div>
+                    <hr class="bg-primary">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary form-control rounded-pill">
+                            Login
+                        </button>
+                    </div>
+                    <span class="text-light">Create a account -> </span>
+                    <a routerLink="/register" class="card-link">signin</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

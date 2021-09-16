@@ -1,0 +1,68 @@
+<div>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid d-flex justify-content-center">
+            <h3 class="text-primary"> Messages List📃</h3>
+            <form class="d-flex">
+                <input [(ngModel)]="searchMessage" class="form-control me-2 border border-primary"
+                name="searchProduct" size="70" type="search" placeholder="Search" aria-label="Search">
+            </form>
+        </div>
+      </nav>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="main-box clearfix">
+                <div class="table-responsive border border-dark rounded">
+                    <table class="table user-list">
+                        <thead>
+                            <tr>
+                                <th><span>User</span></th>
+                                <th><span>Created</span></th>
+                                <th class="text-center"><span>Creator</span></th>
+                                <th><span>Send to</span></th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let message of messages?.reverse() | filter: searchMessage">
+                                <td>
+                                    <a class="text-primary">{{message.userName}}</a>
+                                </td>
+                                <td>
+                                    {{message.createdAt | date: 'MMM, d, y / hh:mm:ss'}}
+                                </td>
+                                <td class="text-center">
+                                    <span class="label label-default">{{message.creator}}</span>
+                                </td>
+                                <td>
+                                    <a>{{message.sendTo}}</a>
+                                </td>
+                                <td style="width: 20%;">
+                                    <a class="table-link">
+                                        <span class="fa-stack">
+                                            <i class="fa fa-square fa-stack-2x"></i>
+                                            <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </a>
+                                    <a class="table-link">
+                                        <span class="fa-stack">
+                                            <i class="fa fa-square fa-stack-2x"></i>
+                                            <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </a>
+                                    <a class="table-link danger">
+                                        <span class="fa-stack">
+                                            <i class="fa fa-square fa-stack-2x"></i>
+                                            <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>

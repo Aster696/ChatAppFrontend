@@ -1,0 +1,42 @@
+<app-nav-bar></app-nav-bar>
+<div class="container mt-3">
+    <div class="col-md-10 mx-auto">
+        <div *ngFor="let user of users?.reverse();let i = index; trackBy: TrackBy" class="card mb-3 shadow">
+            <div class="row no-gutters">
+                <div class="col-auto mt-auto mb-auto ml-3">
+                    <img [src]="user.avtar" alt="..." width="100px" height="100px" 
+                    class="rounded-circle shadow">
+                </div>
+                <div class="col text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            {{user.userName}}
+                        </h5>
+                        <p class="card-text">
+                            Friend request
+                        </p>
+                        <p class="card-text">
+                            <small class="text-muted">
+                                Last updated 3 mins ago
+                            </small>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-auto mb-auto mr-3">
+                    <button (click)="acceptFriendRequest(user)" class="btn btn-primary form-control mb-2">
+                        Accept
+                    </button>
+                    <button (click)="removeFriendRequest(user)" class="btn btn-danger form-control">
+                        Remove
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!users?.length" class="alert alert-info alert-dismissible fade show" role="alert">
+            <strong>No friend request yet!</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+    </div>
+</div>

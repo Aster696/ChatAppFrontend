@@ -1,0 +1,28 @@
+<div class="card shadow" style="height: 550px;">
+    <div class=" card-header bg-primary text-light">
+        <div class="row">
+            <span class="col mt-auto mb-auto h4">
+                <i class="fa fa-user-circle-o"></i>
+                {{user.userName}}
+            </span>
+            <input [(ngModel)]="searchFriend" type="search" placeholder="Search" class="col rounded form-control"/>
+        </div>
+    </div>
+    <div class="cart-body overflow-auto">
+        <ul *ngFor="let user of friends | filter: searchFriend" class="list-group list-group-flush">
+            <li (click)="selectFriend(user._id)" class="list-group-item list-group-item-action border-bottom border-primary">
+                <div>
+                    <span>
+                        <img [src]="user.avtar" alt="" height="45px" width="45px" class="rounded-circle"> 
+                    </span>
+                    <span class=" h5">
+                        {{user.userName}} 
+                    </span>
+                    <span class="text-secondary">
+                        {{user.aboutme}}
+                    </span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

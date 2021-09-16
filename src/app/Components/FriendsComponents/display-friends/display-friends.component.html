@@ -1,0 +1,26 @@
+<app-nav-bar></app-nav-bar>
+<nav class="navbar navbar-light bg-light">
+  <form class="form-inline mx-auto">
+    <input size="60" class="form-control" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-primary" type="submit">
+      <i class="fa fa-search"></i>
+    </button>
+  </form>
+</nav>
+<div class="container pt-3">
+  <div class="row">
+    <div *ngFor="let user of users?.reverse()" class="col-md-6 col-xl-4">                       
+      <div routerLink="/display-friend/{{user._id}}" class="card">
+        <div class="card-body">
+          <div class="media align-items-center">
+            <span style="background-image: url({{user.avtar}})" class="avatar avatar-xl mr-3"></span>
+            <div class="media-body overflow-hidden">
+              <h5 class="card-text mb-0">{{user.userName}}</h5>
+              <p class="card-text text-uppercase text-muted">{{user.aboutme}}</p>
+            </div>
+          </div><a class="tile-link"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

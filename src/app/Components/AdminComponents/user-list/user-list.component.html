@@ -1,0 +1,96 @@
+<div>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid d-flex justify-content-center">
+            <h3 class="text-primary"> User List📃</h3>
+            <form class="d-flex">
+                <input [(ngModel)]="searchUser" class="form-control me-2 border border-primary"
+                name="searchProduct" size="70" type="search" placeholder="Search" aria-label="Search">
+            </form>
+        </div>
+      </nav>
+</div>
+<div class="container">
+<div class="row">
+	<div class="col-lg-12">
+		<div class="main-box clearfix">
+			<div class="table-responsive border border-dark rounded">
+				<table class="table user-list">
+					<thead>
+						<tr>
+							<th><span>User</span></th>
+							<th><span>Created</span></th>
+							<th class="text-center"><span>Status</span></th>
+							<th><span>Email</span></th>
+							<th>&nbsp;</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let user of users?.reverse() | filter: searchUser">
+							<td>
+								<img [src]="user.avtar" alt="" width="50px" height="50px" class="rounded-circle shadow">
+								<a href="#" class="user-link">{{user.userName}}</a>
+								<span class="user-subhead">{{user.authority}}</span>
+							</td>
+							<td>
+								{{user.createdAt | date: 'MMM, d, y'}}
+							</td>
+							<td class="text-center">
+								<span *ngIf="user.status === 'online'" class="label label-default bg-success text-light">
+									Active
+								</span>
+								<span *ngIf="user.status === 'offline'" class="label label-default bg-warning text-light">
+									Inactive
+								</span>
+								<span *ngIf="user.status === 'block'" class="label label-default bg-danger text-light">
+									Ban
+								</span>
+							</td>
+							<td>
+								<a>{{user.email}}</a>
+							</td>
+							<td style="width: 20%;">
+								<a class="table-link">
+									<span routerLink="/display-user/{{user._id}}" class="fa-stack">
+										<i class="fa fa-square fa-stack-2x"></i>
+										<i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+									</span>
+								</a>
+								<a *ngIf="user.authority === 'user'" (click)="updateAuthority(user)" class="table-link text-success">
+									<span class="fa-stack">
+										<i class="fa fa-square fa-stack-2x"></i>
+										<i class="fa fa-user-circle-o fa-stack-1x fa-inverse"></i>
+									</span>
+								</a>
+								<a *ngIf="user.authority === 'admin'" (click)="updateAuthority(user)" class="table-link text-info">
+									<span class="fa-stack">
+										<i class="fa fa-square fa-stack-2x"></i>
+										<i class="fa fa-user-secret fa-stack-1x fa-inverse"></i>
+									</span>
+								</a>
+								<a *ngIf="user.status !== 'block'" (click)="updateStatus(user)" class="table-link text-success">
+									<span class="fa-stack">
+										<i class="fa fa-square fa-stack-2x"></i>
+										<i class="fa fa-check-circle-o fa-stack-1x fa-inverse"></i>
+									</span>
+								</a>
+								<a *ngIf="user.status === 'block'" (click)="updateStatus(user)" class="table-link text-danger">
+									<span class="fa-stack">
+										<i class="fa fa-square fa-stack-2x"></i>
+										<i class="fa fa-ban fa-stack-1x fa-inverse"></i>
+									</span>
+								</a>
+								<a (click)="deleteUser(user._id)" class="table-link danger">
+									<span class="fa-stack">
+										<i class="fa fa-square fa-stack-2x"></i>
+										<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+									</span>
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+</div>

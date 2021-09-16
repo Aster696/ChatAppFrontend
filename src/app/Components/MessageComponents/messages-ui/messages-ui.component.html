@@ -1,0 +1,80 @@
+<div class="card shadow" style="height: 550px;">
+  <div class="card-header bg-primary text-light">
+    <div class="row">
+      <span class="col mt-auto mb-auto h4">
+        <i class="fa fa-user-circle-o"></i>
+        {{friend.userName}}
+      </span>
+      <input [(ngModel)]="searchMessage" type="search" placeholder="Search" class="col mt-auto mb-auto rounded form-control"/>
+      <span class="col mt-auto mb-auto">
+        <div class="dropdown pull-right">
+          <button class="btn btn-primary fa fa-ellipsis-v" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item">
+              Action
+            </a>
+            <a *ngIf="friendId !== ''" class="dropdown-item">
+              Block
+            </a>
+            <a *ngIf="friendId !== ''" (click)="confirmRemoveFriend(friend)" class="dropdown-item bg-danger text-light rounded">
+              Remove
+            </a>
+          </div>
+        </div>
+      </span>
+    </div>
+  </div>
+  <div #scrollMe class="card-body overflow-auto">
+    <ul class="list-group list-group-flush">
+      <li *ngFor="let message of mess | filter: searchMessage" class="p-2" style="list-style: none;">
+        <div *ngIf="message.sendTo === friendId || message.sendTo === user._id && message.creator === friendId" class="col-md-4 text-light shadow rounded" 
+        [ngClass]="user._id === message.creator ? 'float-right bg-primary' : 'float-left bg-success'">
+          <small class="p-1">
+            Date: {{message.createdAt | date: 'MMM-dd-y'}}
+          </small><br>
+          <small class="p-1">
+            Name: {{message.userName}}
+          </small>
+          <div class="p-2 border-top border-bottom border-light">
+            {{message.message}}
+          </div>
+          <small class="p-1">
+            Time: {{message.createdAt | date: 'hh:mm'}}
+          </small>
+        </div>
+      </li>
+      <li *ngFor="let message of messageList" class="p-2" style="list-style: none;">
+        <div *ngIf="message.sendTo === friendId || message.sendTo === user._id && message.creator === friendId" class="col-md-4 shadow text-light rounded" 
+        [ngClass]="user._id === message.creator ? 'float-right bg-primary' : 'float-left bg-success'">
+          <small class="p-1">
+            Date: {{message.createdAt | date: 'MMM-dd-y'}}
+          </small><br>
+          <small class="p-1">
+            Name: {{message.userName}}
+          </small>
+          <div class="p-2 border-top border-bottom border-light">
+            {{message.message}}
+          </div>
+          <small class="p-1">
+            Time: {{message.createdAt | date: 'hh:mm'}}
+          </small>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="friendId !== ''" class="card-header bg-info text-light">
+    <form (ngSubmit)="sendMessage()" class="form-inline d-flex justify-content-center">
+      <input [(ngModel)]="newMessage" name="newMessage" autocomplete="off" class="form-control border border-primary col-md-8" type="text" placeholder="Search" aria-label="Search">
+      <!-- <input class="btn btn-warning text-light" type="file"/> -->
+      <button [disabled]="!!!newMessage" class="btn btn-primary" type="submit">
+        <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+      </button>
+    </form>
+  </div>
+  <div *ngIf="friendId === ''" class="card-header bg-info text-light">
+    <div class="form-inline d-flex justify-content-center">
+      <label>Choose your friend in list</label>
+    </div>
+  </div>
+</div>

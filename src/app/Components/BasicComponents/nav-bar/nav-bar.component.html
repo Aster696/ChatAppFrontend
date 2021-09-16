@@ -1,0 +1,110 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler text-light" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item active">
+            <a routerLinkActive="active" routerLink="/home" class="nav-link">
+                Home 
+            </a>
+        </li>
+        <li class="nav-item active">
+            <a routerLinkActive="active" routerLink="/display-friends" class="nav-link">
+                Friends
+            </a>
+        </li>
+        <li *ngIf="adminAccess()" class="nav-item active">
+            <a routerLinkActive="active" routerLink="/admin" class="nav-link" >
+                Admin
+            </a>
+          </li>
+        <li class="nav-item active">
+            <a routerLinkActive="active" routerLink="/aboutus" class="nav-link">
+                About us
+            </a>
+        </li>
+        <li class="nav-item active">
+            <a routerLinkActive="active" routerLink="/contactus" class="nav-link">
+              Contact us
+            </a>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li *ngIf="userAccess()" class="nav-item active dropdown mt-auto mb-auto">
+          <a class="nav-link fa fa-bell-o btn btn-primary p-2" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            <span *ngIf="!!user.requests?.length" class="badge badge-light">
+              {{user.requests?.length}}
+            </span>
+          </a>
+          <div class="dropdown-menu">
+            <a routerLink="/display-friend-requests" class="dropdown-item">
+                Friend requests 
+                <span *ngIf="!!user.requests?.length" class="badge badge-primary">
+                  {{user.requests?.length}}
+                </span>
+            </a>
+            <a class="dropdown-item">
+              Another action
+            </a>
+            <a class="dropdown-item">
+              Something else here
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item">
+              Separated link
+            </a>
+          </div>
+        </li>
+        <li class="nav-item active dropdown mt-auto mb-auto">
+        <!-- If the user is not logged in -->
+          <a *ngIf="!userAccess()" class="nav-link dropdown-toggle fa fa-user-circle-o p-3" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Welcome
+          </a>
+          <div *ngIf="!userAccess()" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a routerLink="/register" routerLinkActive="active" class="dropdown-item fa fa-user-plus">
+              Sign-up
+            </a>
+            <a routerLink="/login" routerLinkActive="active" class="dropdown-item fa fa-sign-in">
+              Log-in
+            </a>
+          </div>
+          
+        <!-- If the user is logged in -->
+          <a *ngIf="userAccess()" class="nav-link dropdown-toggle mt-auto mb-auto" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img [src]="user.avtar" class="rounded-circle" width="40px" height="40px">
+            {{user.userName}}
+          </a>
+          <div *ngIf="userAccess()" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a *ngIf="adminAccess()" routerLink="/admin" routerLinkActive="active" class="dropdown-item fa fa-user-plus">
+              Admin
+            </a>
+            <a routerLink="/my-profile" routerLinkActive="active" class="dropdown-item fa fa-user">
+              My Profile
+            </a>
+            <hr class="bg-primary">
+            <a (click)="logOut()" class="dropdown-item fa fa-sign-out bg-warning text-light rounded">
+              Log-out
+            </a>
+          </div>
+        </li>
+        <li *ngIf="!userAccess()" class="nav-item active mt-auto mb-auto">
+          <a routerLink="/register" class="nav-link btn btn-success rounded">
+            Sign-up
+          </a>
+        </li>
+        <li *ngIf="!userAccess()" class="nav-item active mt-auto mb-auto">
+          <a routerLink="/login" class="nav-link btn btn-primary rounded">
+            Log-in
+          </a>
+        </li>
+        <li *ngIf="userAccess()" class="nav-item active mt-auto mb-auto">
+          <a (click)="logOut()" class="nav-link btn btn-warning rounded">
+            Log-out
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  

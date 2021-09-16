@@ -1,0 +1,102 @@
+<app-nav-bar></app-nav-bar>
+<div class="row pt-5">
+    <div class="col-xs-1 col-sm-6 col-md-5 col-lg-4 col-xl-3 mx-auto">
+        <div class="card bg-dark text-primary border border-primary">
+            <h3 class="card-header d-flex justify-content-center border-bottom border-primary">
+                Sigin
+            </h3>
+            <div class="card-body">
+                <form [formGroup]="formValidation" (ngSubmit)="onSubmit()" class="form">
+                    <div class="form-group d-flex justify-content-center">
+                        <img [src]="url" [alt]="formValidation.value.userName" width="150px" height="150px" class="rounded-circle border border-primary">
+                    </div>
+                    <div class="form-group d-flex justify-content-center">
+                        <input formControlName="avtar" (change)="onFileSelected($event)"
+                        type="file" class="form-control"/>
+                    </div>
+                    <div *ngIf="avtar?.invalid && avtar?.touched">
+                        <small class="text-danger">
+                            Image is required
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <input formControlName="userName" [class.is-invalid]="userName?.invalid && userName?.touched"
+                        placeholder="Your Name..." type="text" class="form-control border border-primary rounded-pill"/>
+                        <div *ngIf="userName?.invalid && userName?.touched">
+                            <small *ngIf="userName?.errors?.required" class="text-danger">
+                                (Name is required)
+                            </small>
+                            <small *ngIf="userName?.errors?.minlength" class="text-danger">
+                                (Name must have min 3 letters)
+                            </small>
+                            <small *ngIf="userName?.errors?.maxlength" class="text-danger">
+                                (Name must be less 15 letters)
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input formControlName="email" [class.is-invalid]="email?.invalid && email?.touched"
+                        placeholder="Your email..." type="email" class="form-control border border-primary rounded-pill"/>
+                        <div *ngIf="email?.invalid && email?.touched">
+                            <small *ngIf="email?.errors?.required" class="text-danger">
+                                (Email is required)
+                            </small>
+                            <small *ngIf="email?.errors?.email" class="text-danger">
+                                (Enter a proper email)
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input formControlName="mobile" [class.is-invalid]="mobile?.invalid && mobile?.touched"
+                        placeholder="Your mobile.no..." type="email" class="form-control border border-primary rounded-pill"/>
+                        <div *ngIf="mobile?.invalid && mobile?.touched">
+                            <small *ngIf="mobile?.errors?.required" class="text-danger">
+                                (Mobile.no is required)
+                            </small>
+                            <small *ngIf="mobile?.errors?.pattern" class="text-danger">
+                                (Enter a proper mobile.no)
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input formControlName="password" [class.is-invalid]="password?.invalid && password?.touched || formValidation.errors?.misMatch"
+                        placeholder="Your password..." type="password" class="form-control border border-primary rounded-pill"/>
+                        <div *ngIf="password?.invalid && password?.touched">
+                            <small *ngIf="password?.errors?.required" class="text-danger">
+                                (Password is required)
+                            </small>
+                            <small *ngIf="password?.errors?.pattern" class="text-danger">
+                                (Password must contain at least one number, one uppercase, lowercase letter, 
+                                special charector, min 8 or max 18 characters)
+                            </small>
+                        </div>
+                        <small *ngIf="formValidation.errors?.misMatch" class="text-danger">
+                            (Password and Confirm password does not match)
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <input formControlName="conPassword" [class.is-invalid]="conPassword?.invalid && conPassword?.touched || formValidation.errors?.misMatch"
+                        placeholder="Confirm password..." type="password" class="form-control border border-primary rounded-pill"/>
+                        <div *ngIf="conPassword?.invalid && conPassword?.touched">
+                            <small *ngIf="conPassword?.errors?.required" class="text-danger">
+                                (Confirm password is required)
+                            </small>
+                            <small *ngIf="conPassword?.errors?.pattern" class="text-danger">
+                                (Password must contain at least one number, one uppercase, lowercase letter, 
+                                special charector, min 8 or max 18 characters)
+                            </small>
+                        </div>
+                    </div>
+                    <hr class="bg-primary">
+                    <div class="form-group">
+                        <button type="submit" [disabled]="formValidation?.invalid" class="btn btn-primary form-control rounded-pill">
+                            Singin
+                        </button>
+                    </div>
+                    <span class="text-light">Already a user -> </span>
+                    <a routerLink="/login" class="card-link">login</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
