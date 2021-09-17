@@ -19,6 +19,7 @@ export class DisplayFriendsComponent implements OnInit {
 
   public users: UserModel[];
   public pop = new Popups();
+  public searchFriend: string;
 
   ngOnInit(): void {
     this.displayUsers();

@@ -35,6 +35,7 @@ import { ForgetPasswordComponent } from './Components/UserComponents/ForgetPassw
 import { GetOtpComponent } from './Components/UserComponents/ForgetPassword/get-otp/get-otp.component';
 import { ChangePasswordComponent } from './Components/UserComponents/ForgetPassword/change-password/change-password.component';
 import { routes } from 'src/environments/routes';
+import { VersionUpdateComponent } from './Components/BasicComponents/version-update/version-update.component';
 
 const ro = new routes();
 const config: SocketIoConfig = { url: ro.url, options: {} };
@@ -64,7 +65,8 @@ const config: SocketIoConfig = { url: ro.url, options: {} };
     FriendRequestListComponent,
     ForgetPasswordComponent,
     GetOtpComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    VersionUpdateComponent
   ],
   imports: [
     BrowserModule,

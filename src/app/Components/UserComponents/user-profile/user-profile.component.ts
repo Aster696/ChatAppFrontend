@@ -182,11 +182,13 @@ export class UserProfileComponent implements OnInit {
       .subscribe(
         res => {
           if(res.status === 200) {
-            // this.successAlert();
+            this.successAlert();
           }
         }, error => {
-          if(error.status === 404 || 400) {
-            // this.failedAlert();
+          if(error.status === 200) {
+            this.successAlert();
+          }else{
+            this.failedAlert();
           }
         }
       );

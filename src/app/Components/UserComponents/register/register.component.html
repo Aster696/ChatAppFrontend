@@ -14,11 +14,11 @@
                         <input formControlName="avtar" (change)="onFileSelected($event)"
                         type="file" class="form-control"/>
                     </div>
-                    <div *ngIf="avtar?.invalid && avtar?.touched">
+                    <!-- <div *ngIf="avtar?.invalid && avtar?.touched">
                         <small class="text-danger">
                             Image is required
                         </small>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <input formControlName="userName" [class.is-invalid]="userName?.invalid && userName?.touched"
                         placeholder="Your Name..." type="text" class="form-control border border-primary rounded-pill"/>

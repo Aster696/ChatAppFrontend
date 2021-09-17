@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
   }
 
   formValidation = this.fb.group({
-    avtar: [null, Validators.required],
+    avtar: [null],
     userName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
     email: ['', [Validators.required, Validators.email]],
     mobile: ['', [Validators.required, Validators.pattern(this.mobNumberPattern)]],
@@ -122,10 +122,10 @@ export class RegisterComponent implements OnInit {
       .register(this.formData)
       .subscribe(
         res => {
-          console.log(res);
+          // console.log(res);
         },
         error => {
-          console.log(error);
+          // console.log(error);
           if(error.status === 201){
             this.successAlert();
           }

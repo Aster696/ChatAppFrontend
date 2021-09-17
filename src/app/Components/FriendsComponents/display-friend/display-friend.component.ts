@@ -17,11 +17,28 @@ export class DisplayFriendComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
 
+  public myData = new UserModel();
   public user = new UserModel();
   public pop = new Popups();
 
+  public ifFriendExist = false;
+
   ngOnInit(): void {
+    this.displayMyData();
     this.displayUser();
+  }
+
+  displayMyData(): void{
+    try {
+      this.userService
+      .displayUserById(this.userService.getId())
+      .subscribe(
+        data => this.myData = data,
+        error => console.log(error)
+      )
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   displayUser(): void{
@@ -48,7 +65,7 @@ export class DisplayFriendComponent implements OnInit {
       .friendRequest(this.userService.getId(), user)
       .subscribe(
         res => {
-          console.log(res);
+          // console.log(res);
           this.successAlert();
         },
         error => {
@@ -56,6 +73,7 @@ export class DisplayFriendComponent implements OnInit {
             this.successAlert();
           }else if(error.status === 409){
             this.friendExist();
+            // this.ifFriendExist=true;
           }else{
             this.failedAlert();
             console.log(error);
@@ -70,7 +88,7 @@ export class DisplayFriendComponent implements OnInit {
   successAlert(): void{
     this.pop.tostTimeAlert(
       'Success!!!',
-      'Successfully added to your friend list',
+      'Friend request send successfully!!!',
       'success',
       2500
     );

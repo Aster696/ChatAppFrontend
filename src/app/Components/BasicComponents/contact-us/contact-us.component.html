@@ -1,2 +1,81 @@
 <app-nav-bar></app-nav-bar>
-<p>contact-us works!</p>
+<div class="d-flex justify-content-center mt-5">
+    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 col-xl-4">
+        <div class="card rounded-lg border border-dark bg-light p-4">
+            <div class="bg-info text-light border border-dark rounded-lg shadow">
+                <h1 class="card-header d-flex justify-content-center border-dark">
+                    Feedback
+                </h1>
+                <div class="p-4">
+                    <form [formGroup]="formValidation" (ngSubmit)="onSubmit()" class="form">
+                        <div class="form-group">
+                            <input formControlName="name" [class.is-invalid]="name?.invalid && name?.touched" type="text" placeholder="Your name*" class="form-control border-dark"/>
+                            <div *ngIf="name?.invalid && name?.touched">
+                                <small *ngIf="name?.errors?.required" class="text-danger">
+                                    <strong>
+                                        (Name is required)
+                                    </strong>
+                                </small>
+                                <small *ngIf="name?.errors?.minlength" class="text-danger">
+                                    <strong>
+                                        (Name must have minimum 3 letter's)
+                                    </strong>
+                                </small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input formControlName="email" [class.is-invalid]="email?.invalid && email?.touched" type="email" placeholder="Your Email*" class="form-control border-dark"/>
+                            <div *ngIf="email?.invalid && email?.touched">
+                                <small *ngIf="email?.errors?.required" class="text-danger">
+                                    <strong>
+                                        (Email is required)
+                                    </strong>
+                                </small>
+                                <small *ngIf="email?.errors?.email" class="text-danger">
+                                        <strong>
+                                            (Proper email is required)
+                                        </strong>
+                                    </small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input formControlName="subject" [class.is-invalid]="subject?.invalid && subject?.touched" type="text" placeholder="Subject*" class="form-control border-dark"/>
+                            <div *ngIf="subject?.invalid && subject?.touched">
+                                <small *ngIf="subject?.errors?.required" class="text-danger">
+                                    <strong>
+                                        (Subject is required)
+                                    </strong>
+                                </small>
+                                <small *ngIf="subject?.errors?.minlength" class="text-danger">
+                                    <strong>
+                                        (Subject must have minimum 5 letter's)
+                                    </strong>
+                                </small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea formControlName="text" [class.is-invalid]="text?.invalid && text?.touched" rows="5" placeholder="Message*" class="form-control border-dark"></textarea>
+                            <div *ngIf="text?.invalid && text?.touched">
+                                <small *ngIf="text?.errors?.required" class="text-danger">
+                                    <strong>
+                                        (Message is required)
+                                    </strong>
+                                </small>
+                                <small *ngIf="text?.errors?.minlength" class="text-danger">
+                                    <strong>
+                                        (Message must have minimum 5 letter's)
+                                    </strong>
+                                </small>
+                            </div>
+                        </div>
+                        <hr class="bg-dark">
+                        <button [disabled]="formValidation.invalid" type="submit" class="btn btn-primary shadow form-control">
+                            Submit
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <app-footer></app-footer> -->

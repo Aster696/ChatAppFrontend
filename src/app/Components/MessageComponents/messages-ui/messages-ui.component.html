@@ -65,8 +65,10 @@
   </div>
   <div *ngIf="friendId !== ''" class="card-header bg-info text-light">
     <form (ngSubmit)="sendMessage()" class="form-inline d-flex justify-content-center">
-      <input [(ngModel)]="newMessage" name="newMessage" autocomplete="off" class="form-control border border-primary col-md-8" type="text" placeholder="Search" aria-label="Search">
-      <!-- <input class="btn btn-warning text-light" type="file"/> -->
+      <textarea [(ngModel)]="newMessage" name="newMessage" autocomplete="off" class="form-control border border-primary col-md-8" 
+      rows="1" aria-multiline="true" type="text" placeholder="Search" aria-label="Search">
+      </textarea>
+        <!-- <input class="btn btn-warning text-light" type="file"/> -->
       <button [disabled]="!!!newMessage" class="btn btn-primary" type="submit">
         <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
       </button>
