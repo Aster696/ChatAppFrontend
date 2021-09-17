@@ -19,6 +19,7 @@ import { GetOtpComponent } from './Components/UserComponents/ForgetPassword/get-
 import { LoginComponent } from './Components/UserComponents/login/login.component';
 import { RegisterComponent } from './Components/UserComponents/register/register.component';
 import { UserProfileComponent } from './Components/UserComponents/user-profile/user-profile.component';
+import { UserLoggedInGuard } from 'src/AuthGuard/user-logged-in.guard';
 
 const routes: Routes = [
    //Default route ---------------------------------------------------------
@@ -28,12 +29,12 @@ const routes: Routes = [
    {path: 'aboutus', component: AboutUsComponent},
    {path: 'contactus', component: ContactUsComponent},
    //User component route --------------------------------------------------
-   {path: 'register', component: RegisterComponent},
-   {path: 'login', component: LoginComponent},
+   {path: 'register', component: RegisterComponent, canActivate: [UserLoggedInGuard]},
+   {path: 'login', component: LoginComponent, canActivate: [UserLoggedInGuard]},
    {path: 'my-profile', component: UserProfileComponent, canActivate: [UserAuthGuardGuard]},
-   {path: 'forgot-password', component: ForgetPasswordComponent},
-   {path: 'get-otp', component: GetOtpComponent},
-   {path: 'reset-password/:token', component: ChangePasswordComponent},
+   {path: 'forgot-password', component: ForgetPasswordComponent, canActivate: [UserLoggedInGuard]},
+   {path: 'get-otp', component: GetOtpComponent, canActivate: [UserLoggedInGuard]},
+   {path: 'reset-password/:token', component: ChangePasswordComponent, canActivate: [UserLoggedInGuard]},
    //Friends list ----------------------------------------------------------
    {path: 'display-friend-requests', component: FriendRequestListComponent, canActivate: [UserAuthGuardGuard]},
    {path: 'display-friends', component: DisplayFriendsComponent, canActivate: [UserAuthGuardGuard]},

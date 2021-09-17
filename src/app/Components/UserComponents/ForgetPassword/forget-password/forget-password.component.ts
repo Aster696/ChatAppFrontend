@@ -4,6 +4,7 @@ import { Popups } from 'src/Models/Popups';
 import { UserModel } from 'src/Models/UserModel';
 import { MailServicesService } from 'src/Services/MailService/mail-services.service';
 import { UserServiceService } from 'src/Services/UserService/user-service.service';
+import { routes } from 'src/environments/routes';
 
 @Component({
   selector: 'app-forget-password',
@@ -23,6 +24,7 @@ export class ForgetPasswordComponent implements OnInit {
   public user = new UserModel();
   public mail = new EmailModel();
   public popUp = new Popups();
+  public ro = new routes();
 
   forgotPassword(): void{
     try {
@@ -45,14 +47,16 @@ export class ForgetPasswordComponent implements OnInit {
   sendGmail(email: string, token: string): void{
     this.mail.to = email;
     this.mail.subject = 'Reset password link';
-    this.mail.text = `your reset password link is given below \n
-    Link is only valid for 5 minutes ➡ http://localhost:4200/reset-password/${token}`;
+    this.mail.text = `your reset password link is given below \n`
+    // +`Link is only valid for 5 minutes ➡ http://localhost:4200/reset-password/${token}`;
+    +`Link is only valid for 5 minutes ➡ ${this.ro.webLink}/reset-password/${token}`;
     try {
       this.mailService
       .Gmail(this.mail)
       .subscribe(
         res => {
           // console.log(res);
+          email = '';
         }, error => {
           console.log(error);
         }
