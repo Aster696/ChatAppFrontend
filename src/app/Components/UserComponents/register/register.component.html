@@ -3,7 +3,7 @@
     <div class="col-xs-1 col-sm-6 col-md-5 col-lg-4 col-xl-3 mx-auto">
         <div class="card bg-dark text-primary border border-primary">
             <h3 class="card-header d-flex justify-content-center border-bottom border-primary">
-                Sigin
+                Sign-Up
             </h3>
             <div class="card-body">
                 <form [formGroup]="formValidation" (ngSubmit)="onSubmit()" class="form">
@@ -90,7 +90,7 @@
                     <hr class="bg-primary">
                     <div class="form-group">
                         <button type="submit" [disabled]="formValidation?.invalid" class="btn btn-primary form-control rounded-pill">
-                            Singin
+                            Sign-Up
                         </button>
                     </div>
                     <span class="text-light">Already a user -> </span>
