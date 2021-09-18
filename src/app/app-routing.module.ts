@@ -32,9 +32,9 @@ const routes: Routes = [
    {path: 'register', component: RegisterComponent, canActivate: [UserLoggedInGuard]},
    {path: 'login', component: LoginComponent, canActivate: [UserLoggedInGuard]},
    {path: 'my-profile', component: UserProfileComponent, canActivate: [UserAuthGuardGuard]},
-   {path: 'forgot-password', component: ForgetPasswordComponent, canActivate: [UserLoggedInGuard]},
-   {path: 'get-otp', component: GetOtpComponent, canActivate: [UserLoggedInGuard]},
-   {path: 'reset-password/:token', component: ChangePasswordComponent, canActivate: [UserLoggedInGuard]},
+  //  {path: 'forgot-password', component: ForgetPasswordComponent, canActivate: [UserLoggedInGuard]},
+  //  {path: 'get-otp', component: GetOtpComponent, canActivate: [UserLoggedInGuard]},
+  //  {path: 'reset-password/:token', component: ChangePasswordComponent, canActivate: [UserLoggedInGuard]},
    //Friends list ----------------------------------------------------------
    {path: 'display-friend-requests', component: FriendRequestListComponent, canActivate: [UserAuthGuardGuard]},
    {path: 'display-friends', component: DisplayFriendsComponent, canActivate: [UserAuthGuardGuard]},
