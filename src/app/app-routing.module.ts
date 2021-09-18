@@ -20,6 +20,7 @@ import { LoginComponent } from './Components/UserComponents/login/login.componen
 import { RegisterComponent } from './Components/UserComponents/register/register.component';
 import { UserProfileComponent } from './Components/UserComponents/user-profile/user-profile.component';
 import { UserLoggedInGuard } from 'src/AuthGuard/user-logged-in.guard';
+import { AdminAuthGuardGuard } from 'src/AuthGuard/admin-auth-guard.guard';
 
 const routes: Routes = [
    //Default route ---------------------------------------------------------
@@ -42,10 +43,10 @@ const routes: Routes = [
    //Message component route -----------------------------------------------
    {path: 'message', component: MessagesUiComponent, canActivate: [UserAuthGuardGuard]},
    //Admin component route -------------------------------------------------
-   {path: 'admin', component: AdminNavBarComponent, canActivate: [UserAuthGuardGuard]},
-   {path: 'user-list', component: UserListComponent, canActivate: [UserAuthGuardGuard]},
-   {path: 'display-user/:id', component: DisplayUserComponent, canActivate: [UserAuthGuardGuard]},
-   {path: 'message-list', component: MessageListComponent, canActivate: [UserAuthGuardGuard]},
+   {path: 'admin', component: AdminNavBarComponent, canActivate: [AdminAuthGuardGuard]},
+   {path: 'user-list', component: UserListComponent, canActivate: [AdminAuthGuardGuard]},
+   {path: 'display-user/:id', component: DisplayUserComponent, canActivate: [AdminAuthGuardGuard]},
+   {path: 'message-list', component: MessageListComponent, canActivate: [AdminAuthGuardGuard]},
    //Error route -----------------------------------------------------------
    {path: '**', component: PageNotFoundComponent}
 ];
