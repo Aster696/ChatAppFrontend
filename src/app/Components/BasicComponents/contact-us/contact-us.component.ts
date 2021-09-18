@@ -74,7 +74,7 @@ export class ContactUsComponent implements OnInit {
     this.feedback.email = this.formValidation.value.email;
     this.feedback.subject = this.formValidation.value.subject;
     this.feedback.message = this.formValidation.value.text;
-    console.log(this.feedback);
+    // console.log(this.feedback);
   }
 
   onSubmit(): void{
